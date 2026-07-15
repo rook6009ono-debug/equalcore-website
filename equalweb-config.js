@@ -13,5 +13,5 @@
    空文字("")のままだとサンプルデータを表示する（デモ・開発用）。
 ======================================================================== */
 window.EQUAL_WEB = {
-  apiUrl: "https://script.google.com/macros/s/AKfycbxs_r3l4lNR7srBzPmpl8s_wLKrNfTozSY2edF81GMPecaMF_0QUPoLo4CqiwcQZ-ki2g/exec"
+  apiUrl: "https://script.google.com/macros/s/AKfycbzimv93IYXwSPB2AePN1ejxHUrvoD4VP0iMSONcnqh2TFubxDygHwEFLiaD4WbV4rc9vQ/exec"
 };
