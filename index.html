@@ -491,6 +491,9 @@ footer{background:var(--ink);color:#fff;padding:70px 0 34px}
 .ewm-body a{color:var(--blue)}
 .ewm-tags{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
 .ewm-tag{font-size:11px;background:var(--sky);color:var(--blue);padding:3px 10px;border-radius:99px;font-weight:700}
+/* 代表ビジュアル（写真版） */
+.ceo-visual.has-photo{aspect-ratio:auto;background:#fff}
+.ceo-photo{width:100%;height:auto;display:block}
 @media(max-width:860px){
   .ewa{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .ewn-item{grid-template-columns:1fr;gap:6px;padding:16px 18px}
@@ -794,9 +797,8 @@ footer{background:var(--ink);color:#fff;padding:70px 0 34px}
     <h2 class="s-title rv d1">私たちは、会社を<br>整える会社です。</h2>
     <div class="ceo-grid">
       <div class="rv d1">
-        <div class="ceo-visual">
-          <svg class="kun"><use href="#kunSym"/></svg>
-          <div class="badge"><b>Equal Core Co., Ltd.</b><span>会社という仕組みを、デザインする。</span></div>
+        <div class="ceo-visual has-photo">
+          <img class="ceo-photo" src="ceo.webp" alt="株式会社イコールコア 代表取締役 仲 隆宏" width="1100" height="951">
         </div>
       </div>
       <div class="ceo-text rv d2">
