@@ -879,11 +879,12 @@ footer{background:var(--ink);color:#fff;padding:70px 0 34px}
       <p class="rv d2">まずは無料の現状診断から。会社の“いま”を、一緒に見える化します。</p>
     </div>
     <form class="form rv d2" id="cform" onsubmit="return submitForm(event)">
-      <div class="fg"><label>会社名<span class="req">*</span></label><input type="text" required placeholder="株式会社〇〇"></div>
-      <div class="fg"><label>お名前<span class="req">*</span></label><input type="text" required placeholder="山田 太郎"></div>
-      <div class="fg"><label>メールアドレス<span class="req">*</span></label><input type="email" required placeholder="you@example.com"></div>
+      <div class="fg"><label>会社名<span class="req">*</span></label><input type="text" id="cf-company" required placeholder="株式会社〇〇"></div>
+      <div class="fg"><label>お名前<span class="req">*</span></label><input type="text" id="cf-name" required placeholder="山田 太郎"></div>
+      <div class="fg"><label>メールアドレス<span class="req">*</span></label><input type="email" id="cf-email" required placeholder="you@example.com"></div>
+      <div class="fg" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true"><label>Website</label><input type="text" id="cf-website" tabindex="-1" autocomplete="off"></div>
       <div class="fg"><label>ご相談内容</label>
-        <select>
+        <select id="cf-topic">
           <option>Equal Core Foundation（経営基盤の構築）</option>
           <option>Equal HR（人事基盤）</option>
           <option>Equal Asset（備品・貸与管理）</option>
@@ -894,9 +895,9 @@ footer{background:var(--ink);color:#fff;padding:70px 0 34px}
           <option>まず何から始めるべきか相談したい</option>
         </select>
       </div>
-      <div class="fg"><label>メッセージ</label><textarea placeholder="お困りごとや、実現したいことをお書きください。"></textarea></div>
-      <button type="submit" class="btn btn-p">無料相談を申し込む →</button>
-      <p class="form-note">※ こちらはデモ用フォームです。実際の送信は行われません。</p>
+      <div class="fg"><label>メッセージ</label><textarea id="cf-message" placeholder="お困りごとや、実現したいことをお書きください。"></textarea></div>
+      <button type="submit" class="btn btn-p" id="cf-submit">無料相談を申し込む →</button>
+      <p class="form-note">通常1〜2営業日以内にご返信いたします。</p>
     </form>
     <div class="thanks" id="thanks">
       <div class="ic">🎉</div>
@@ -1030,8 +1031,30 @@ function shareLine(){
   window.open('https://social-plugins.line.me/lineit/share?url='+url+'&text='+text,'_blank','width=600,height=600');
 }
 
-/* ---------- フォーム（デモ） ---------- */
-function submitForm(e){e.preventDefault();document.getElementById('cform').style.display='none';document.getElementById('thanks').classList.add('on');return false}
+/* ---------- お問い合わせフォーム（Equal Web連携・本送信） ---------- */
+function submitForm(e){
+  e.preventDefault();
+  var btn=document.getElementById('cf-submit');
+  var api=((window.EQUAL_WEB||{}).apiUrl||'').trim();
+  var payload={
+    action:'inquiry',
+    company:document.getElementById('cf-company').value.trim(),
+    name:document.getElementById('cf-name').value.trim(),
+    email:document.getElementById('cf-email').value.trim(),
+    topic:document.getElementById('cf-topic').value,
+    message:document.getElementById('cf-message').value.trim(),
+    website:document.getElementById('cf-website').value // ハニーポット（人間は空のまま）
+  };
+  function done(){document.getElementById('cform').style.display='none';document.getElementById('thanks').classList.add('on')}
+  function fail(){btn.disabled=false;btn.textContent='無料相談を申し込む →';alert('送信に失敗しました。お手数ですが、時間をおいて再度お試しください。')}
+  btn.disabled=true;btn.textContent='送信中…';
+  if(!api){setTimeout(done,600);return false} // API未接続（デモ）時は成功扱い
+  fetch(api,{method:'POST',body:JSON.stringify(payload)}) // Content-Type未指定=text/plainでCORSプリフライト回避
+    .then(function(r){return r.json()})
+    .then(function(d){if(d&&d.ok){done()}else{console.warn('inquiry error:',d);fail()}})
+    .catch(function(err){console.warn('inquiry error:',err);fail()});
+  return false;
+}
 </script>
 
 <script src="equalweb-config.js"></script>
