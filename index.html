@@ -139,7 +139,7 @@ header.scr{background:rgba(11,10,8,.86);backdrop-filter:saturate(140%) blur(16px
 .stage-ring{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;border:1px solid rgba(201,163,91,.16);border-radius:50%}
 .stage-ring::before{content:"";position:absolute;inset:-26px;border:1px dashed rgba(201,163,91,.18);border-radius:50%;animation:spin 50s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero-logo{width:min(300px,62%);position:relative;z-index:3;animation:bob 6s ease-in-out infinite;filter:drop-shadow(0 20px 44px rgba(0,0,0,.6))}
+.hero-logo{width:min(300px,62%);height:auto;flex:none;position:relative;z-index:3;animation:bob 6s ease-in-out infinite;filter:drop-shadow(0 20px 44px rgba(0,0,0,.6))}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 /* 双子オービット（ロゴの周りを旋回） */
 .orbit{position:absolute;top:46%;left:50%;width:0;height:0;z-index:4;pointer-events:none}
@@ -191,7 +191,7 @@ header.scr{background:rgba(11,10,8,.86);backdrop-filter:saturate(140%) blur(16px
 .converge p{color:var(--muted);font-weight:500;margin-bottom:54px;letter-spacing:.06em}
 .cv-stage{position:relative;height:380px;max-width:720px;margin:0 auto}
 .cv-core{position:absolute;top:50%;left:50%;width:170px;transform:translate(-50%,-50%) scale(.4);opacity:0;transition:all 1s var(--ease) .55s;z-index:5}
-.cv-core img{width:100%;filter:drop-shadow(0 0 44px rgba(201,163,91,.5))}
+.cv-core img{width:100%;height:auto;filter:drop-shadow(0 0 44px rgba(201,163,91,.5))}
 .cv.in .cv-core{opacity:1;transform:translate(-50%,-50%) scale(1)}
 .cv-item{position:absolute;top:50%;left:50%;background:var(--panel2);border:1px solid var(--line);border-radius:2px;padding:12px 18px;font-size:12.5px;font-weight:600;color:#d9cfb8;display:flex;align-items:center;gap:8px;transition:all 1.05s var(--ease);backdrop-filter:blur(6px);white-space:nowrap;letter-spacing:.05em}
 .cv-item i{font-style:normal;font-size:14px;color:var(--gold)}
@@ -549,7 +549,7 @@ footer{background:#070604;color:var(--body-c);padding:80px 0 36px;border-top:1px
 <header id="hdr">
   <div class="hi">
     <a href="#top" class="logo" aria-label="Equal Core">
-      <img class="logo-img" src="img/logo-mark.png" alt="Equal Core" width="386" height="320">
+      <img class="logo-img" src="img/logo-mark.png" alt="Equal Core" width="380" height="320">
       <span class="logo-tx"><b>Equal Core</b><span>会社を整えるOS</span></span>
     </a>
     <nav class="nav">
@@ -603,7 +603,7 @@ footer{background:#070604;color:var(--body-c);padding:80px 0 36px;border-top:1px
       <div class="hero-stage rv d3">
         <div class="stage-halo"></div>
         <div class="stage-ring"></div>
-        <img class="hero-logo" src="img/logo-full.png" alt="Equal Core ロゴ" width="560" height="731">
+        <img class="hero-logo" src="img/logo-full.png" alt="Equal Core ロゴ" width="560" height="534">
         <div class="orbit o1"><img src="img/kun-equal.png" alt="イコール君" width="166" height="258"></div>
         <div class="orbit o2"><img src="img/kun-core.png" alt="コア君" width="206" height="258"></div>
       </div>
@@ -651,7 +651,7 @@ footer{background:#070604;color:var(--body-c);padding:80px 0 36px;border-top:1px
       <div class="cv-item i4"><i>◆</i>案件・現場</div>
       <div class="cv-item i5"><i>◆</i>材料・支払</div>
       <div class="cv-item i6"><i>◆</i>数字</div>
-      <div class="cv-core"><img src="img/logo-mark.png" alt="Equal Core" width="386" height="320"></div>
+      <div class="cv-core"><img src="img/logo-mark.png" alt="Equal Core" width="380" height="320"></div>
     </div>
     <p class="cv-after rv-line">会社を整える。<span class="gd">そのためのOSです。</span></p>
   </div>
@@ -944,7 +944,7 @@ footer{background:#070604;color:var(--body-c);padding:80px 0 36px;border-top:1px
   <div class="inn">
     <div class="ft-grid">
       <div class="ft-brand">
-        <img src="img/logo-full.png" alt="Equal Core" width="560" height="731">
+        <img src="img/logo-full.png" alt="Equal Core" width="560" height="534">
         <p>会社を整えるOS。会社の土台を整え、その上に業界特化のCoreを積み上げる。人を増やすことではなく、仕組みを増やすことで成長できる会社を。</p>
       </div>
       <div class="ft-col">
