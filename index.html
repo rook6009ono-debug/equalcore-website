@@ -124,7 +124,9 @@ header.scr{background:rgba(34,34,33,.88);backdrop-filter:saturate(140%) blur(16p
 .hero-finale{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 1.6s var(--ease) .5s;background:radial-gradient(640px 520px at 50% 46%, rgba(201,163,91,.12), rgba(201,163,91,0) 70%)}
 .hero-finale.on{opacity:1}
 .hf-logo{width:min(320px,58vw);height:auto;animation:bob 6s ease-in-out infinite;filter:drop-shadow(0 20px 44px rgba(0,0,0,.6))}
-.hf-kun{position:absolute;top:50%;height:auto;filter:drop-shadow(0 16px 26px rgba(0,0,0,.55));transition:transform 1.6s var(--ease) .7s}
+.hf-side{position:absolute;top:50%;transition:transform 1.6s var(--ease) .7s}
+.hf-side img{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45))}
+.hf-side::after{content:"";position:absolute;left:10%;right:10%;bottom:-13px;height:26px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,0) 72%)}
 .hf-e{width:150px;left:calc(50% - 350px);transform:translate(-40px,-50%);}
 .hf-c{width:145px;right:calc(50% - 350px);transform:translate(40px,-50%);}
 .hero-finale.on .hf-e{transform:translate(0,-50%)}
@@ -577,9 +579,9 @@ footer{background:#1a1a19;color:var(--body-c);padding:80px 0 36px;border-top:1px
     <source src="video/equalcore-cm.mp4" type="video/mp4">
   </video>
   <div class="hero-finale" id="heroFinale">
-    <img class="hf-kun hf-e" src="img/kun-equal.png" alt="イコール君" width="197" height="261">
+    <div class="hf-side hf-e"><img src="img/kun-equal.png" alt="イコール君" width="197" height="261"></div>
     <img class="hf-logo" src="img/logo-full.png" alt="Equal Core ＝ 会社を整えるOS" width="560" height="534">
-    <img class="hf-kun hf-c" src="img/kun-core.png" alt="コア君" width="190" height="261">
+    <div class="hf-side hf-c"><img src="img/kun-core.png" alt="コア君" width="190" height="261"></div>
   </div>
   <button class="hero-btn hero-sound" id="heroSound" onclick="toggleHeroSound()" aria-label="CMの音声を切り替え">♪ 音声を出す</button>
   <button class="hero-btn hero-skip" id="heroSkip" onclick="endCM()" aria-label="CMをスキップ">スキップ →</button>
