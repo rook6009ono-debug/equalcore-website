@@ -1095,11 +1095,14 @@ function submitForm(e){
     message:document.getElementById('cf-message').value.trim(),
     website:document.getElementById('cf-website').value // ハニーポット（人間は空のまま）
   };
-  function done(){document.getElementById('cform').style.display='none';document.getElementById('thanks').classList.add('on')}
+  var fingerprint=JSON.stringify(payload);
+  if(!window.equalWebInquiry||window.equalWebInquiry.fingerprint!==fingerprint)window.equalWebInquiry={fingerprint:fingerprint,requestId:crypto.randomUUID()};
+  payload.requestId=window.equalWebInquiry.requestId;
+  function done(){window.equalWebInquiry=null;document.getElementById('cform').style.display='none';document.getElementById('thanks').classList.add('on')}
   function fail(){btn.disabled=false;btn.textContent='無料相談を申し込む';alert('送信に失敗しました。お手数ですが、時間をおいて再度お試しください。')}
   btn.disabled=true;btn.textContent='送信中…';
-  if(!api){setTimeout(done,600);return false} // API未接続（デモ）時は成功扱い
-  fetch(api,{method:'POST',body:JSON.stringify(payload)}) // Content-Type未指定=text/plainでCORSプリフライト回避
+  if(!api){fail();return false}
+  fetch(api,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)})
     .then(function(r){return r.json()})
     .then(function(d){if(d&&d.ok){done()}else{console.warn('inquiry error:',d);fail()}})
     .catch(function(err){console.warn('inquiry error:',err);fail()});
@@ -1111,7 +1114,7 @@ function submitForm(e){
 <script>
 /* ========================================================================
    Equal Web 連携 — お知らせ・コラム・会社概要の自動配信
-   equalweb-config.js の apiUrl にGASのURLを貼ると本番データに切り替わる。
+   equalweb-config.js の apiUrl で公開APIの接続先を管理する。
    未設定の間はサンプルデータで表示（デモ・開発用）。
 ======================================================================== */
 (function(){
@@ -1240,8 +1243,8 @@ function submitForm(e){
   }
   function load(){
     if(!API){render(MOCK,true);return}
-    fetch(API+'?action=api').then(function(r){return r.json()}).then(function(d){render(d,false)})
-      .catch(function(e){console.warn('Equal Web API 接続エラー:',e);render(MOCK,true)});
+    fetch(API+'?action=api',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('Equal Web APIを取得できません');return r.json()}).then(function(d){if(d.ok===false)throw Error('Equal Web APIを取得できません');render(d,false)})
+      .catch(function(e){console.warn('Equal Web API 接続エラー:',e)});
   }
   load();
   if(API)setInterval(load,60000); // 1分ごとに自動更新（デモで効果的）

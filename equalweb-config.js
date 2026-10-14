@@ -1,17 +1,4 @@
-/* ========================================================================
-   Equal Web 連携設定
-   ------------------------------------------------------------------------
-   apiUrl に GASウェブアプリのURL（…/exec）を貼ると、
-   お知らせ・コラム・会社概要が Equal Web のデータベースから自動配信される。
-
-   手順:
-   1. GASエディタで enablePublicMode() を1回実行（管理画面キーが発行される）
-   2. 「デプロイ」→「新しいデプロイ」→ ウェブアプリ
-      実行: 自分 ／ アクセス: 全員
-   3. 発行された …/exec のURLを下の apiUrl に貼る
-
-   空文字("")のままだとサンプルデータを表示する（デモ・開発用）。
-======================================================================== */
+/* Equal Web 接続設定。公開APIのみ。管理権限・秘密鍵はここに置かない。 */
 window.EQUAL_WEB = {
-  apiUrl: "https://script.google.com/macros/s/AKfycbzPenxF2plkdfs3v6ehCU47aEBOxT_nX6nd6Plieepruy--9lC-ObBo2NZXC5K2X7mFYw/exec"
+  apiUrl: "https://bjgjzctbilrkgprgfsct.supabase.co/functions/v1/equal-web"
 };
